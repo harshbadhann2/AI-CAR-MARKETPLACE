@@ -106,10 +106,3 @@ Recommended: Vercel. Configure environment variables in Vercel dashboard and use
 
 Playwright reports and screenshots are located in `playwright-report/`. Add or run tests per the existing test config in `package.json` if present.
 
-## Next steps I can help with
-
-- Create `.env.example` with the variables above
-- Add `LICENSE` and `CONTRIBUTING.md`
-- Configure a GitHub Action or Vercel deployment pipeline
-
-If you'd like any of the above, tell me which and I'll add them.
