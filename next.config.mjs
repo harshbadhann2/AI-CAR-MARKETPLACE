@@ -1,0 +1,42 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    serverComponentsHmrCache: false, // defaults to true
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ymqpkygmownybanldbpq.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "fhzppcmzlbisrdtpauxi.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "imgd.aeplcdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/embed",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-src 'self' https://roadsidecoder.created.app;",
+          },
+        ],
+      },
+    ];
+  },
+};
+
+export default nextConfig;
