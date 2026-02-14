@@ -167,7 +167,7 @@ export function CarListings() {
       // Add ellipsis
       paginationItems.push(
         <PaginationItem key={`ellipsis-${pageNumber}`}>
-          <PaginationEllipsis />
+          <PaginationEllipsis className="text-gray-400" />
         </PaginationItem>
       );
     }
@@ -181,6 +181,10 @@ export function CarListings() {
             e.preventDefault();
             handlePageChange(pageNumber);
           }}
+          className={`text-white hover:bg-white/10 hover:text-blue-400 transition-colors ${pageNumber === page
+            ? "bg-blue-600 text-white hover:bg-blue-700 hover:text-white border-blue-600"
+            : ""
+            }`}
         >
           {pageNumber}
         </PaginationLink>
@@ -194,12 +198,12 @@ export function CarListings() {
     <div>
       {/* Results count and current page */}
       <div className="flex justify-between items-center mb-6">
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           Showing{" "}
-          <span className="font-medium">
+          <span className="font-medium text-white">
             {(page - 1) * limit + 1}-{Math.min(page * limit, pagination.total)}
           </span>{" "}
-          of <span className="font-medium">{pagination.total}</span> cars
+          of <span className="font-medium text-white">{pagination.total}</span> cars
         </p>
       </div>
 
@@ -212,8 +216,8 @@ export function CarListings() {
 
       {/* shadcn Pagination */}
       {pagination.pages > 1 && (
-        <Pagination className="mt-10">
-          <PaginationContent>
+        <Pagination className="mt-12">
+          <PaginationContent className="bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1">
             <PaginationItem>
               <PaginationPrevious
                 href={getPaginationUrl(page - 1)}
@@ -223,7 +227,7 @@ export function CarListings() {
                     handlePageChange(page - 1);
                   }
                 }}
-                className={page <= 1 ? "pointer-events-none opacity-50" : ""}
+                className={`text-white hover:bg-white/10 hover:text-blue-400 transition-colors ${page <= 1 ? "pointer-events-none opacity-50" : ""}`}
               />
             </PaginationItem>
 
@@ -238,11 +242,10 @@ export function CarListings() {
                     handlePageChange(page + 1);
                   }
                 }}
-                className={
-                  page >= pagination.pages
-                    ? "pointer-events-none opacity-50"
-                    : ""
-                }
+                className={`text-white hover:bg-white/10 hover:text-blue-400 transition-colors ${page >= pagination.pages
+                  ? "pointer-events-none opacity-50"
+                  : ""
+                  }`}
               />
             </PaginationItem>
           </PaginationContent>

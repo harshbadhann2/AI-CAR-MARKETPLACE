@@ -47,10 +47,10 @@ export const CarFilterControls = ({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Price Range */}
       <div className="space-y-4">
-        <h3 className="font-medium">Price Range</h3>
+        <h3 className="font-medium text-white">Price Range</h3>
         <div className="px-2">
           <Slider
             min={filters.priceRange.min}
@@ -58,22 +58,23 @@ export const CarFilterControls = ({
             step={50000}
             value={priceRange}
             onValueChange={(value) => onFilterChange("priceRange", value)}
+            className="cursor-pointer"
           />
         </div>
         <div className="flex items-center justify-between">
-          <div className="font-medium text-sm">₹ {priceRange[0].toLocaleString("en-IN")}</div>
-          <div className="font-medium text-sm">₹ {priceRange[1].toLocaleString("en-IN")}</div>
+          <div className="font-medium text-sm text-blue-300">₹ {priceRange[0].toLocaleString("en-IN")}</div>
+          <div className="font-medium text-sm text-blue-300">₹ {priceRange[1].toLocaleString("en-IN")}</div>
         </div>
       </div>
 
       {/* Filter Categories */}
       {filterSections.map((section) => (
-        <div key={section.id} className="space-y-3">
-          <h4 className="text-sm font-medium flex justify-between">
+        <div key={section.id} className="space-y-4">
+          <h4 className="text-sm font-medium flex justify-between text-gray-300">
             <span>{section.title}</span>
             {section.currentValue && (
               <button
-                className="text-xs text-gray-600 flex items-center"
+                className="text-xs text-red-400 hover:text-red-300 flex items-center transition-colors"
                 onClick={() => onClearFilter(section.id)}
               >
                 <X className="mr-1 h-3 w-3" />
@@ -88,11 +89,10 @@ export const CarFilterControls = ({
                 variant={
                   section.currentValue === option.value ? "default" : "outline"
                 }
-                className={`cursor-pointer px-3 py-1 ${
-                  section.currentValue === option.value
-                    ? "bg-blue-100 hover:bg-blue-200 text-blue-900 border-blue-200"
-                    : "bg-white hover:bg-gray-100 text-gray-700"
-                }`}
+                className={`cursor-pointer px-3 py-1.5 text-sm transition-all duration-300 ${section.currentValue === option.value
+                    ? "bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/20"
+                    : "bg-white/5 hover:bg-white/10 text-gray-400 border-white/10 hover:border-white/20"
+                  }`}
                 onClick={() => {
                   section.onChange(
                     section.currentValue === option.value ? "" : option.value
@@ -101,7 +101,7 @@ export const CarFilterControls = ({
               >
                 {option.label}
                 {section.currentValue === option.value && (
-                  <Check className="ml-1 h-3 w-3 inline" />
+                  <Check className="ml-2 h-3 w-3 inline" />
                 )}
               </Badge>
             ))}
